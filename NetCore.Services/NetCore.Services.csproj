@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\NetCore.DataEF\NetCore.DataEF.csproj" />
     <ProjectReference Include="..\NetCore.Data\NetCore.Data.csproj" />
   </ItemGroup>
 

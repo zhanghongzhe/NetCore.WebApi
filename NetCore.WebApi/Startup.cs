@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using NetCore.Data.Repositories;
 using NetCore.Data.Repositories.Parcels;
 using NetCore.Services.Parcels;
+using Microsoft.EntityFrameworkCore;
 
 namespace NetCore.WebApi
 {
@@ -79,6 +80,12 @@ namespace NetCore.WebApi
             services.AddScoped<ParcelRepository>();
             services.AddScoped<ParcelService>();
 
+
+            #region EF×¢²á
+            services.AddDbContext<DataEF.ObjectContext>(o => o.UseSqlServer("server=10.10.4.201;User ID=sa;Password=colipu;database=NewTMSDB;Min Pool Size=100;Max Pool Size=200;"));
+            services.AddScoped<DataEF.IDbContext, DataEF.ObjectContext>();
+            services.AddScoped<NetCore.DataEF.IRepository<NetCore.Core.Domain.Parcels.Parcel>, NetCore.DataEF.EfRepository<NetCore.Core.Domain.Parcels.Parcel>>(); 
+            #endregion
         }
         #endregion
 

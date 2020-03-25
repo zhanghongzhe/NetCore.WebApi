@@ -4,7 +4,7 @@ using System;
 namespace NetCore.Data.Domain.Parcels
 {
     [Table("TParcel")]
-    public class Parcel : Entity
+    public class ParcelDo : Entity
     {
         [ExplicitKey]
         public int ParcelId { get; set; }

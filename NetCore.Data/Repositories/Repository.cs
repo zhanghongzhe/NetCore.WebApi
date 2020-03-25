@@ -21,7 +21,7 @@ namespace NetCore.Data.Repositories
         /// <summary>
         /// 
         /// </summary>
-        protected System.Data.IDbConnection Connection { get { return dbConnectionFactory.Connection; } }
+        public System.Data.IDbConnection Connection { get { return dbConnectionFactory.Connection; } }
 
         /// <summary>
         /// 表名称

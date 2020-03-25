@@ -20,15 +20,21 @@ namespace NetCore.WebApi.Controllers.V1
         }
 
         [HttpGet("Index")]
-        public Parcel Index()
+        public ParcelDo Index()
         {
             return this._parcelService.Get(1111, "D026392934");
         }
 
         [HttpGet("GetByCustomer")]
-        public IEnumerable<Parcel> GetByCustomer()
+        public IEnumerable<ParcelDo> GetByCustomer()
         {
             return this._parcelService.GetByCustomer(1111);
+        }
+
+        [HttpGet("GetByEF")]
+        public NetCore.Core.Domain.Parcels.Parcel GetByEF()
+        {
+            return this._parcelService.GetByEF(1111, "D026446471");
         }
     }
 }
