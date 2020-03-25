@@ -76,16 +76,20 @@ namespace NetCore.WebApi
         #region 服务注册
         public void ConfigureService(IServiceCollection services)
         {
-            services.AddScoped<TMSConnectionFactory>();
-            services.AddScoped<ParcelRepository>();
-            services.AddScoped<ParcelService>();
-
+            #region Dapper注册
+            services.AddScoped<TMSConnectionFactory>(); //注入TMS连接
+            services.AddScoped<DbConnectionFactory>(); //注入基础连接，用于下面的Repository泛型
+            services.AddScoped<Repository<Data.Domain.Parcels.ParcelDo>>(); //注入Dapper仓储泛型
+            services.AddScoped<ParcelRepository>(); //注入包裹仓储模型 
+            #endregion
 
             #region EF注册
             services.AddDbContext<DataEF.ObjectContext>(o => o.UseSqlServer("server=10.10.4.201;User ID=sa;Password=colipu;database=NewTMSDB;Min Pool Size=100;Max Pool Size=200;"));
             services.AddScoped<DataEF.IDbContext, DataEF.ObjectContext>();
-            services.AddScoped<NetCore.DataEF.IRepository<NetCore.Core.Domain.Parcels.Parcel>, NetCore.DataEF.EfRepository<NetCore.Core.Domain.Parcels.Parcel>>(); 
+            services.AddScoped<NetCore.DataEF.IRepository<NetCore.Core.Domain.Parcels.Parcel>, NetCore.DataEF.EfRepository<NetCore.Core.Domain.Parcels.Parcel>>();
             #endregion
+
+            services.AddScoped<ParcelService>(); ///注入业务层
         }
         #endregion
 

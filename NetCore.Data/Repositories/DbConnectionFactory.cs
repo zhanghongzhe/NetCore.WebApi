@@ -13,7 +13,7 @@ namespace NetCore.Data.Repositories
         }
     }
 
-    public abstract class DbConnectionFactory
+    public class DbConnectionFactory
     {
         protected DbConnectionConfig config { get; set; }
         protected string ConnectionString { get; set; }
@@ -23,6 +23,7 @@ namespace NetCore.Data.Repositories
         public DbConnectionFactory(IOptions<DbConnectionConfig> options)
         {
             this.config = options.Value;
+            this.ConnectionString = config.TMS;
         }
 
         /// <summary>

@@ -8,7 +8,7 @@ using System.Reflection;
 
 namespace NetCore.Data.Repositories
 {
-    public abstract class Repository<TEntity> where TEntity : Entity, new()
+    public class Repository<TEntity> where TEntity : Entity, new()
     {
         //默认60S的数据库执行超时时间
         private readonly int commandTimeout = 60;
